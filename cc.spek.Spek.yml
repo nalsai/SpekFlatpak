@@ -1,0 +1,58 @@
+app-id: cc.spek.Spek
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: spek
+branch: stable
+rename-appdata-file: spek.appdata.xml
+rename-desktop-file: spek.desktop
+rename-icon: spek
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    add-ld-path: .
+    version: '21.08'
+    autodownload: true
+    autodelete: false
+cleanup-commands:
+  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+cleanup:
+  - /include
+  - /lib/*.a
+  - /lib/*.la
+  - /lib/pkgconfig
+  - /share/man
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --filesystem=host
+modules:
+  - shared-modules/intltool/intltool-0.51.json
+  - name: wxWidgets
+    rm-configure: true
+#    config-opts:
+#      - --with-opengl
+    cleanup:
+      - /bin
+      - /include
+      - /lib/wx
+      - /share/aclocal
+      - /share/bakefile
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5/wxWidgets-3.0.5.tar.bz2
+        sha256: 8aacd56b462f42fb6e33b4d8f5d40be5abc3d3b41348ea968aa515cc8285d813
+        x-checker-data:
+          type: html
+          url: 'https://www.wxwidgets.org/downloads'
+          version-pattern: 'Latest Stable Release: ([\d\.-]+)'
+          url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
+
+  - name: spek
+    sources:
+      - type: git
+        url: https://github.com/alexkay/spek
+        commit: f071c2956176ad53c7c8059e5c00e694ded31ded
+
