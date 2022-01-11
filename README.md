@@ -9,16 +9,9 @@ Spek is available on *BSD, GNU/Linux, Windows and Mac OS X.
 
 Find out more about Spek on its website: http://spek.cc/
 
-## Known issues
-
-- Error: "./src/common/iconbndl.cpp(293): assert "icon.IsOk()" failed in AddIcon(): invalid icon" at startup
-
-Despite the errors, the program works normally.  
-Let me know if you can help or have any other issues: https://github.com/Nalsai/SpekFlatpak/issues
-
 ## Installing
 
-I'm hosting this Spek Flatpak on my own Flatpak Repo. You can install it from there like this:
+I'm hosting this Flatpak on my own Flatpak Repo. You can install it from there like this:
 
 ```bash
 flatpak install https://flatpak.nils.moe/cc.spek.Spek.flatpakref
@@ -28,20 +21,27 @@ You can also install it from the bundle in Releases on GitHub, but you won't get
 
 ## Building
 
-### Install SDK and Platform
+### Install SDK, Platform and ffmpeg Extension
 
 ```bash
 flatpak install flathub org.freedesktop.Sdk//21.08
 flatpak install flathub org.freedesktop.Platform//21.08
+flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
 ```
 
-### Build
+### Build and install for user
+
+```bash
+flatpak-builder --user --install --force-clean build-dir cc.spek.Spek.yml
+```
+
+### Build to repo
 
 ```bash
 flatpak-builder --repo=repo --force-clean build-dir cc.spek.Spek.yml
 ```
 
-### Make single-file bundle
+### Make single-file bundle from repo
 
 ```bash
 flatpak build-bundle repo spek.flatpak cc.spek.Spek stable --runtime-repo="https://flathub.org/repo/flathub.flatpakrepo"
@@ -52,4 +52,3 @@ flatpak build-bundle repo spek.flatpak cc.spek.Spek stable --runtime-repo="https
 ```bash
 git submodule update --remote --merge
 ```
-
