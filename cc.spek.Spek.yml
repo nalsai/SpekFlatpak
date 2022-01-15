@@ -16,6 +16,8 @@ add-extensions:
     autodelete: false
 cleanup-commands:
   - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+  - mv /app/share/icons/hicolor/scalable/apps/spek.svg /app/share/icons/hicolor/scalable/apps/cc.spek.Spek.svg
+  - ln -s /app/share/icons/hicolor/scalable/apps/cc.spek.Spek.svg /app/share/icons/hicolor/scalable/apps/spek.svg
 cleanup:
   - /include
   - /lib/*.a
@@ -32,7 +34,6 @@ modules:
   - name: wxWidgets
     rm-configure: true
     cleanup:
-      - /bin
       - /include
       - /lib/wx
       - /share/aclocal
@@ -52,4 +53,3 @@ modules:
       - type: git
         url: https://github.com/alexkay/spek
         commit: f071c2956176ad53c7c8059e5c00e694ded31ded
-

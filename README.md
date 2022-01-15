@@ -9,6 +9,9 @@ Spek is available on *BSD, GNU/Linux, Windows and Mac OS X.
 
 Find out more about Spek on its website: http://spek.cc/
 
+If you're wondering why it only shows Spek 0.8.2 and not 0.8.3, that's because 0.8.3 is a OS X specific bugfix release.
+This Flatpak is built from the newest source available.
+
 ## Installing
 
 I'm hosting this Flatpak on my own Flatpak Repo. You can install it from there like this:
