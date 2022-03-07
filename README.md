@@ -5,12 +5,7 @@
 Spek is an acoustic spectrum analyser written in C and C++. It uses FFmpeg
 libraries for audio decoding and wxWidgets for the GUI.
 
-Spek is available on *BSD, GNU/Linux, Windows and Mac OS X.
-
-Find out more about Spek on its website: http://spek.cc/
-
-If you're wondering why it only shows Spek 0.8.2 and not 0.8.3, that's because 0.8.3 is a OS X specific bugfix release.
-This Flatpak is built from the newest source available.
+Find out more about Spek on its website: <http://spek.cc/>
 
 ## Installing
 
@@ -20,37 +15,14 @@ I'm hosting this Flatpak on my own Flatpak Repo. You can install it from there l
 flatpak install https://flatpak.nils.moe/cc.spek.Spek.flatpakref
 ```
 
-You can also install it from the bundle in Releases on GitHub, but you won't get updates that way.
-
 ## Building
 
-### Install SDK, Platform and ffmpeg Extension
-
 ```bash
-flatpak install flathub org.freedesktop.Sdk//21.08
-flatpak install flathub org.freedesktop.Platform//21.08
 flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
+flatpak-builder --install-deps-from=flathub --force-clean build-dir cc.spek.Spek.yml
 ```
 
-### Build and install for user
-
-```bash
-flatpak-builder --user --install --force-clean build-dir cc.spek.Spek.yml
-```
-
-### Build to repo
-
-```bash
-flatpak-builder --repo=repo --force-clean build-dir cc.spek.Spek.yml
-```
-
-### Make single-file bundle from repo
-
-```bash
-flatpak build-bundle repo spek.flatpak cc.spek.Spek stable --runtime-repo="https://flathub.org/repo/flathub.flatpakrepo"
-```
-
-## Update submodule (shared-modules)
+## Update shared-modules
 
 ```bash
 git submodule update --remote --merge
