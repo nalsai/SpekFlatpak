@@ -1,0 +1,26 @@
+name: 📦 Build Flatpak
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  flatpak:
+    name: build-flatpak
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:freedesktop-21.08
+      options: --privileged
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - name: Build Flatpak
+        uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+        with:
+          bundle:  cc.spek.Spek.flatpak
+          manifest-path: cc.spek.Spek.yml
+          cache-key: flatpak-builder-${{ github.sha }}
+
