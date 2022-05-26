@@ -3,7 +3,7 @@ runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: spek
-branch: stable
+default-branch: stable
 rename-appdata-file: spek.appdata.xml
 rename-desktop-file: spek.desktop
 rename-icon: spek
