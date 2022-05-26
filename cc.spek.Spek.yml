@@ -53,3 +53,11 @@ modules:
       - type: git
         url: https://github.com/alexkay/spek
         commit: f071c2956176ad53c7c8059e5c00e694ded31ded
+
+  - name: spek-appdata
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 cc.spek.Spek.metainfo.xml /app/share/appdata/cc.spek.Spek.metainfo.xml
+    sources:
+      - type: file
+        path: cc.spek.Spek.metainfo.xml
