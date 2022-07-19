@@ -30,7 +30,6 @@ finish-args:
   - --socket=wayland
   - --filesystem=home
 modules:
-  - shared-modules/intltool/intltool-0.51.json
   - name: wxWidgets
     rm-configure: true
     cleanup:
@@ -52,7 +51,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/alexkay/spek
-        commit: f071c2956176ad53c7c8059e5c00e694ded31ded
+        tag: v0.8.4
+        commit: 6105e4ac2c20b45df915da9832fb283364e2b927
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
   - name: spek-appdata
     buildsystem: simple
