@@ -4,7 +4,6 @@ runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
 command: spek
 default-branch: stable
-rename-appdata-file: spek.appdata.xml
 rename-desktop-file: spek.desktop
 rename-icon: spek
 add-extensions:
@@ -57,7 +56,7 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
 
-  - name: spek-appdata
+  - name: spek-metainfo
     buildsystem: simple
     build-commands:
       - install -Dm644 cc.spek.Spek.metainfo.xml /app/share/appdata/cc.spek.Spek.metainfo.xml
