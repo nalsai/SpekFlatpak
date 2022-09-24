@@ -12,6 +12,11 @@ jobs:
     container:
       image: bilelmoussaoui/flatpak-github-actions:freedesktop-21.08
       options: --privileged
+    strategy:
+      matrix:
+        arch: [x86_64, aarch64]
+      # Don't fail the whole workflow if one architecture fails
+      fail-fast: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -23,4 +28,12 @@ jobs:
           bundle:  cc.spek.Spek.flatpak
           manifest-path: cc.spek.Spek.yml
           cache-key: flatpak-builder-${{ github.sha }}
+          arch: ${{ matrix.arch }}
+          branch: stable
+      - name: Deploy
+        uses: bilelmoussaoui/flatpak-github-actions/flat-manager@v3
+        with:
+          repository: ""
+          flat-manager-url: https://flatpak.hachiman.nils.moe
+          token: ${{ secrets.FLATMAN_TOKEN }}
 
