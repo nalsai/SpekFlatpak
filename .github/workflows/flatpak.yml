@@ -10,7 +10,7 @@ jobs:
     name: build-flatpak
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:freedesktop-21.08
+      image: bilelmoussaoui/flatpak-github-actions:freedesktop-22.08
       options: --privileged
     strategy:
       matrix:

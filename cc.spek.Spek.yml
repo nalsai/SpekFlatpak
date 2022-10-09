@@ -1,6 +1,6 @@
 app-id: cc.spek.Spek
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: spek
 default-branch: stable
@@ -10,7 +10,7 @@ add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
     add-ld-path: .
-    version: '21.08'
+    version: '22.08'
     autodownload: true
     autodelete: false
 cleanup-commands:
@@ -47,6 +47,7 @@ modules:
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
 
   - name: spek
+    buildsystem: autotools
     sources:
       - type: git
         url: https://github.com/alexkay/spek
@@ -55,6 +56,12 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+      # use https://github.com/alexkay/spek/pull/232 to support ffmpeg 5
+      - type: file
+        url: https://raw.githubusercontent.com/alexkay/spek/23f481e41a612b71f94f79546303545111c303ae/src/spek-audio.cc
+        sha256: 72908ede55b40af11ee3cd9f03ca4b371af0e05e42204161604fede4494bcb52
+        dest: src
+        dest-filename: spek-audio.cc
 
   - name: spek-metainfo
     buildsystem: simple
