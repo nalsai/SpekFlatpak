@@ -31,6 +31,7 @@ jobs:
           arch: ${{ matrix.arch }}
           branch: stable
       - name: Deploy
+        if: github.event_name != 'pull_request'
         uses: bilelmoussaoui/flatpak-github-actions/flat-manager@v3
         with:
           repository: ""
