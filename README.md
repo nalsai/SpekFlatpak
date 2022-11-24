@@ -15,7 +15,7 @@ I'm hosting this Flatpak on my own Flatpak Repo. You can install it from there l
 flatpak install https://flatpak.nils.moe/repo/appstream/cc.spek.Spek.flatpakref
 ```
 
-You also need to install the ffmepg extension:
+You also need to install the ffmpeg-full extension:
 
 ```bash
 flatpak install flathub org.freedesktop.Platform.ffmpeg-full//22.08
