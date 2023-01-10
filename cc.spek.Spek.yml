@@ -51,17 +51,15 @@ modules:
     sources:
       - type: git
         url: https://github.com/alexkay/spek
-        tag: v0.8.4
-        commit: 6105e4ac2c20b45df915da9832fb283364e2b927
+        tag: v0.8.5
+        commit: bf4ea059f6f87cf0f2c379f890115173fa04ce57
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-      # use https://github.com/alexkay/spek/pull/232 to support ffmpeg 5
-      - type: file
-        url: https://raw.githubusercontent.com/alexkay/spek/23f481e41a612b71f94f79546303545111c303ae/src/spek-audio.cc
-        sha256: 72908ede55b40af11ee3cd9f03ca4b371af0e05e42204161604fede4494bcb52
-        dest: src
-        dest-filename: spek-audio.cc
+      - type: patch
+        path: configure.ac.patch
+      - type: patch
+        path: spek-audio.cc.patch
 
   - name: spek-metainfo
     buildsystem: simple
