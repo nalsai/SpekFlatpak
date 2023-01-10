@@ -51,8 +51,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/alexkay/spek
-        tag: v0.8.4
-        commit: 6105e4ac2c20b45df915da9832fb283364e2b927
+        tag: v0.8.5
+        commit: bf4ea059f6f87cf0f2c379f890115173fa04ce57
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
