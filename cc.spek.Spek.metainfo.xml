@@ -32,6 +32,8 @@
     <developer_name>alexkay</developer_name>
     <content_rating type="oars-1.1" />
     <releases>
+        <release version="0.8.5" date="2023-01-10"/>
+        <release version="0.8.4" date="2022-07-11"/>
         <release version="0.8.2" date="2016-01-19"/>
     </releases>
 </component>
