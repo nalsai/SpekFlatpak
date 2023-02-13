@@ -38,8 +38,8 @@ modules:
       - /share/bakefile
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2/wxWidgets-3.2.2.tar.bz2
-        sha256: 8edf18672b7bc0996ee6b7caa2bee017a9be604aad1ee471e243df7471f5db5d
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.2.1/wxWidgets-3.2.2.1.tar.bz2
+        sha256: dffcb6be71296fff4b7f8840eb1b510178f57aa2eb236b20da41182009242c02
         x-checker-data:
           type: html
           url: https://www.wxwidgets.org/downloads
