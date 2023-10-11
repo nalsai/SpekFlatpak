@@ -1,22 +1,13 @@
 app-id: cc.spek.Spek
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: spek
 default-branch: stable
+rename-appdata-file: spek.metainfo.xml
 rename-desktop-file: spek.desktop
 rename-icon: spek
-add-extensions:
-  org.freedesktop.Platform.ffmpeg-full:
-    directory: lib/ffmpeg
-    add-ld-path: .
-    version: '22.08'
-    autodownload: true
-    autodelete: false
-cleanup-commands:
-  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
-  - mv /app/share/icons/hicolor/scalable/apps/spek.svg /app/share/icons/hicolor/scalable/apps/cc.spek.Spek.svg
-  - ln -s /app/share/icons/hicolor/scalable/apps/cc.spek.Spek.svg /app/share/icons/hicolor/scalable/apps/spek.svg
+copy-icon: true
 cleanup:
   - /include
   - /lib/*.a
@@ -27,7 +18,7 @@ finish-args:
   - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
-  - --filesystem=home
+  - --filesystem=home:ro
 modules:
   - name: wxWidgets
     rm-configure: true
@@ -46,25 +37,45 @@ modules:
           version-pattern: 'Latest Stable Release: ([\d\.-]+)'
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
 
+  - name: ffmpeg
+    config-opts:
+      # See windows builds for reference
+      # https://github.com/mxe/mxe/blob/master/src/ffmpeg.mk
+      # https://github.com/alexkay/spek/blob/master/dist/win/mxe.diff
+      - --enable-static
+      - --disable-shared
+      - --disable-debug
+      - --disable-doc
+      - --disable-avdevice
+      - --disable-avfilter
+      - --disable-swscale
+      - --disable-programs
+      - --disable-muxers
+      - --disable-zlib
+      - --disable-bzlib
+      - --disable-iconv
+      - --disable-bsfs
+      - --disable-filters
+      - --disable-encoders
+      - --disable-hwaccels
+    cleanup:
+      - /share/ffmpeg/examples
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-5.1.2.tar.xz
+        sha256: 619e706d662c8420859832ddc259cd4d4096a48a2ce1eefd052db9e440eef3dc
+        x-checker-data:
+          type: anitya
+          project-id: 5405
+          url-template: https://ffmpeg.org/releases/ffmpeg-$version.tar.xz
+
   - name: spek
     buildsystem: autotools
     sources:
       - type: git
         url: https://github.com/alexkay/spek
-        tag: v0.8.5
-        commit: bf4ea059f6f87cf0f2c379f890115173fa04ce57
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
-      - type: patch
-        path: configure.ac.patch
-      - type: patch
-        path: spek-audio.cc.patch
-
-  - name: spek-metainfo
-    buildsystem: simple
-    build-commands:
-      - install -Dm644 cc.spek.Spek.metainfo.xml /app/share/appdata/cc.spek.Spek.metainfo.xml
-    sources:
-      - type: file
-        path: cc.spek.Spek.metainfo.xml
+        #tag: v0.8.5
+        commit: b1600d9926fa434330171cbebb407d2d0ccdcf03
+        #x-checker-data:
+        #  type: git
+        #  tag-pattern: ^v([\d.]+)$
