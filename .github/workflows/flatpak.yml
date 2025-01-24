@@ -37,4 +37,4 @@ jobs:
           repository: ""
           flat-manager-url: https://flatpak.hachiman.nils.moe
           token: ${{ secrets.FLATMAN_TOKEN }}
-
+          end-of-life: "Spek is now on Flathub! You can uninstall this version and install the Flathub one while preserving your data."

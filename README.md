@@ -1,5 +1,10 @@
 # Spek Flatpak
 
+> [!CAUTION]
+>
+> Spek is now on Flathub (<https://flathub.org/apps/cc.spek.Spek>).  
+> Therefore this repository is no longer maintained.
+
 📦 Flatpak Package of Spek for Linux
 
 Spek is an acoustic spectrum analyser written in C and C++. It uses FFmpeg
